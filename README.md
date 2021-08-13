@@ -5,5 +5,5 @@
 </div>
 
 <div>
-	<img align="left" src="Spiral.png" alt="">
+	<img align="left" src="spiral.png" alt="" />
 </div>
