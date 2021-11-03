@@ -82,7 +82,6 @@
                 item.y2 = d.yp + yValue;
               }
             });
-            renderLines(connectData);
             d3.select($this).attr("transform", () => `translate(${d.xp}, ${d.yp})`);
           }
           // drag end
