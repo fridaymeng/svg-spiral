@@ -4,6 +4,7 @@
 	<p>Black is point.</p>
 </div>
 
+![demo](https://github.com/fridaymeng/svg-spiral/blob/master/Spiral.png)
 <div>
 	<img align="left" src="https://github.com/fridaymeng/svg-spiral/blob/master/Spiral.png" alt="" />
 </div>
