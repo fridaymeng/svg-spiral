@@ -59,6 +59,27 @@
             renderMain();
           }
 
+          // draw connect lines
+          function renderLines (data) {
+            pathWrap.selectAll(".connect-fixed-line").remove();
+            const allPath = pathWrap.selectAll(".connect-fixed-line")
+              .data(data)
+              .enter()
+              .append("path")
+              .attr("class", (d) => `start-${d.source} end-${d.target} connect-fixed-line`)
+              .attr("style", "stroke: #111;stroke-width: 1px;")
+              .attr("marker-end","url(#arrowEnd)")
+              .attr("d", (d) => `M${data[2].x1},${data[2].y1} ${data[2].x2},${data[2].y2}`)
+              .attr("data-id", d => d.id)
+              .on("click", (event, d) => {
+                if (onPathClick) onPathClick(d);
+              });
+            allPath.transition()
+              .duration(750)
+              .delay(function(d, i) { return i; })
+              .attr("d", (d) => `M${d.x1},${d.y1} ${d.x2},${d.y2}`);
+          }
+
           // drag start
           function dragstart (event, d) {
             // d3.select(this).classed("fixed", false);
@@ -88,27 +109,6 @@
           function dragend (event, d) {
             d.x = d.xp || event.sourceEvent.x;
             d.y = d.yp || event.sourceEvent.y;
-          }
-
-          // draw connect lines
-          function renderLines (data) {
-            pathWrap.selectAll(".connect-fixed-line").remove();
-            const allPath = pathWrap.selectAll(".connect-fixed-line")
-              .data(data)
-              .enter()
-              .append("path")
-              .attr("class", (d) => `start-${d.source} end-${d.target} connect-fixed-line`)
-              .attr("style", "stroke: #111;stroke-width: 1px;")
-              .attr("marker-end","url(#arrowEnd)")
-              .attr("d", (d) => `M${data[2].x1},${data[2].y1} ${data[2].x2},${data[2].y2}`)
-              .attr("data-id", d => d.id)
-              .on("click", (event, d) => {
-                if (onPathClick) onPathClick(d);
-              });
-            allPath.transition()
-              .duration(750)
-              .delay(function(d, i) { return i; })
-              .attr("d", (d) => `M${d.x1},${d.y1} ${d.x2},${d.y2}`);
           }
 
           function renderMain () {
@@ -303,33 +303,33 @@
                 if(i > 1){
                   lines.push({
                     x1: coordArr[i-1].x + 300,
-                    y1: coordArr[i-1].y-150 + 700,
+                    y1: coordArr[i-1].y + 600,
                     x2: coordArr[i].x + 300,
-                    y2: coordArr[i].y-150 + 700
+                    y2: coordArr[i].y + 600
                   });
                   lines.push({
                     x1: coordArr2[i-1].x + 600,
-                    y1: coordArr2[i-1].y-150 + 700,
+                    y1: coordArr2[i-1].y + 600,
                     x2: coordArr2[i].x + 600,
-                    y2: coordArr2[i].y-150 + 700
+                    y2: coordArr2[i].y + 600
                   });
                   lines.push({
                     x1: coordArr3[i-1].x + 900,
-                    y1: coordArr3[i-1].y-150 + 700,
+                    y1: coordArr3[i-1].y + 600,
                     x2: coordArr3[i].x + 900,
-                    y2: coordArr3[i].y-150 + 700
+                    y2: coordArr3[i].y + 600
                   });
                   lines.push({
                     x1: coordArr4[i-1].x + 1200,
-                    y1: coordArr4[i-1].y-150 + 700,
+                    y1: coordArr4[i-1].y + 600,
                     x2: coordArr4[i].x + 1200,
-                    y2: coordArr4[i].y-150 + 700
+                    y2: coordArr4[i].y + 600
                   });
                   lines.push({
                     x1: coordArr5[i-1].x + 1500,
-                    y1: coordArr5[i-1].y-150 + 700,
+                    y1: coordArr5[i-1].y + 600,
                     x2: coordArr5[i].x + 1500,
-                    y2: coordArr5[i].y-150 + 700
+                    y2: coordArr5[i].y + 600
                   });
                 }
                 t = t + step;
