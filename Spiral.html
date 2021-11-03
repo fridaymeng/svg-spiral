@@ -51,7 +51,7 @@
               .attr("id", d => d.id)
               .attr("class", "unit-dis")
               .call(drag)
-              .attr('transform', (d) => `translate(0, 350)`);
+              .attr('transform', (d) => `translate(${params.data[2].x}, ${params.data[2].y})`);
             objectWrap.transition()
               .duration(750)
               .delay(function(d, i) { return i; })
@@ -100,7 +100,7 @@
               .attr("class", (d) => `start-${d.source} end-${d.target} connect-fixed-line`)
               .attr("style", "stroke: #111;stroke-width: 1px;")
               .attr("marker-end","url(#arrowEnd)")
-              .attr("d", (d) => `M0,350 0,350`)
+              .attr("d", (d) => `M${data[2].x1},${data[2].y1} ${data[2].x2},${data[2].y2}`)
               .attr("data-id", d => d.id)
               .on("click", (event, d) => {
                 if (onPathClick) onPathClick(d);
@@ -262,7 +262,7 @@
                   r = 0,
                   step = 10,
                   i,c;
-              masterArr.length = 350;
+              masterArr.length = 310;
               for(i = 0; i < masterArr.length; i ++){
                 r = .05 * (1 + t);
                 resultCoord = getCoord(r,t);
